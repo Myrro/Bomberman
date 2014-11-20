@@ -3,21 +3,34 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package bomberman;
+package bombermann;
 
+import java.awt.Graphics;
+import java.awt.Graphics2D;
 /**
  *
  * @author Myrro
  */
 public class mainPanel extends javax.swing.JPanel {
 
+    private int HEIGHT=660;
+    private int WIDTH=660;
     /**
      * Creates new form mainPanel
      */
+    
     public mainPanel() {
+        
         initComponents();
+        setSize(WIDTH,HEIGHT);
+        setVisible(true);
+        repaint();
     }
 
+    public void paintComponent(Graphics g){
+    
+        super.paintComponent(g);
+    }
     /**
      * This method is called from within the constructor to initialize the form.
      * WARNING: Do NOT modify this code. The content of this method is always
