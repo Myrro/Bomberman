@@ -1,0 +1,22 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package bombermann;
+
+import javax.swing.ImageIcon;
+/**
+ *
+ * @author Myrro
+ */
+public class DWall extends Wall implements WallInterface{
+    
+    public DWall(){
+    
+        filename="destructible-wall.png";
+        pic=new ImageIcon(filename);
+        destructible=true;
+        alive=true;
+    }
+}
