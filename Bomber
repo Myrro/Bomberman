@@ -1,0 +1,81 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package bombermann;
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author Myrro
+ */
+public class Bomber implements WallInterface{
+    
+    private int x;
+    private int y;
+    private String filename;
+    private ImageIcon pic;
+    private boolean destructible;
+    private boolean alive;
+    
+    public Bomber(){
+    
+        x=0;
+        y=0;
+        filename="bomber.png";
+        pic=new ImageIcon(filename);
+        destructible=true;
+        alive=true;
+    }
+
+    @Override
+    public void setX(int x) {
+        
+        this.x=x;
+    }
+
+    @Override
+    public int getX() {
+        
+        return x;
+    }
+
+    @Override
+    public void setY(int y) {
+        
+        this.y=y;
+    }
+
+    @Override
+    public int getY() {
+        
+        return y;
+    }
+
+    @Override
+    public Image getImage() {
+        
+        return pic.getImage();
+    }
+
+    @Override
+    public boolean isDestructible() {
+        
+        return destructible;
+    }
+
+    @Override
+    public void die() {
+        
+        alive=false;
+    }
+
+    @Override
+    public boolean isAlive() {
+        
+        return alive;
+    }
+}
