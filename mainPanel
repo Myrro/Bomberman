@@ -7,6 +7,7 @@ package bombermann;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.util.ArrayList;
 /**
  *
  * @author Myrro
@@ -15,6 +16,10 @@ public class mainPanel extends javax.swing.JPanel {
 
     private int HEIGHT=660;
     private int WIDTH=660;
+    private String pole[][];
+    private ArrayList grass;
+    private ArrayList uwalls;
+    private ArrayList dwalls;
     /**
      * Creates new form mainPanel
      */
@@ -24,12 +29,110 @@ public class mainPanel extends javax.swing.JPanel {
         initComponents();
         setSize(WIDTH,HEIGHT);
         setVisible(true);
+        grass=new ArrayList();
+        uwalls=new ArrayList();
+        dwalls=new ArrayList();
+        initPosition();
+        initMap();
         repaint();
     }
 
     public void paintComponent(Graphics g){
     
         super.paintComponent(g);
+        
+        for(int i=0;i<grass.size();i++){
+        
+            Wall w=(Wall)grass.get(i);
+            g.drawImage(w.getImage(), w.getX(), w.getY(), this);
+        }
+        for(int i=0;i<uwalls.size();i++){
+        
+            UWall uw=(UWall)uwalls.get(i);
+            g.drawImage(uw.getImage(),uw.getX(),uw.getY(),this);
+        }
+        for(int i=0;i<dwalls.size();i++){
+        
+            DWall d=(DWall)dwalls.get(i);
+            g.drawImage(d.getImage(),d.getX(),d.getY(),this);
+        }
+        
+    }
+    
+    private void initPosition(){
+    
+        pole=new String[11][];
+        for(int i=0;i<11;i++){
+        
+            pole[i]=new String[11];
+        }
+        for(int i=0;i<11;i++){
+        
+            for(int j=0;j<11;j++){
+            
+                if(i%2==1 && j%2==1){
+                
+                    pole[i][j]="u";
+                }
+                else {
+                    
+                    if(i==0&&j==0||i==0&&j==1){
+                    
+                        pole[i][j]="g";
+                    }
+                    else if(i==1&&j==0){
+                    
+                        pole[i][j]="g";
+                    }
+                    else if(i==10&&j==10){
+                    
+                        pole[i][j]="g";
+                    }
+                    else if(i==10&&j==9){
+                    
+                        pole[i][j]="g";
+                    }
+                    else if(i==9&&j==10){
+                    
+                        pole[i][j]="g";
+                    }
+                    else
+                        pole[i][j]="d";
+                }
+                
+            }
+        }
+    }
+    
+    private void initMap(){
+    
+        for(int i=0;i<11;i++){
+        
+            for(int j=0;j<11;j++){
+            
+                if(pole[i][j].equals("u")){
+                
+                    UWall u=new UWall();
+                    u.setX(j*60);
+                    u.setY(i*60);
+                    uwalls.add(u);
+                }
+                else if(pole[i][j].equals("g")){
+                
+                    Wall w=new Wall();
+                    w.setX(j*60);
+                    w.setY(i*60);
+                    grass.add(w);
+                }
+                else if(pole[i][j].equals("d")){
+                
+                    DWall d=new DWall();
+                    d.setX(j*60);
+                    d.setY(i*60);
+                    dwalls.add(d);
+                }
+            }
+        }
     }
     /**
      * This method is called from within the constructor to initialize the form.
