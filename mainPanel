@@ -7,12 +7,14 @@ package bombermann;
 
 import java.awt.Graphics;
 import java.awt.Graphics2D;
+import java.awt.event.KeyEvent;
+import java.awt.event.KeyListener;
 import java.util.ArrayList;
 /**
  *
  * @author Myrro
  */
-public class mainPanel extends javax.swing.JPanel {
+public class mainPanel extends javax.swing.JPanel{
 
     private int HEIGHT=660;
     private int WIDTH=660;
@@ -20,6 +22,8 @@ public class mainPanel extends javax.swing.JPanel {
     private ArrayList grass;
     private ArrayList uwalls;
     private ArrayList dwalls;
+    private Bomber bm;
+    private Player pl;
     /**
      * Creates new form mainPanel
      */
@@ -32,6 +36,8 @@ public class mainPanel extends javax.swing.JPanel {
         grass=new ArrayList();
         uwalls=new ArrayList();
         dwalls=new ArrayList();
+        bm=new Bomber();
+        pl=new Player();
         initPosition();
         initMap();
         repaint();
@@ -56,7 +62,8 @@ public class mainPanel extends javax.swing.JPanel {
             DWall d=(DWall)dwalls.get(i);
             g.drawImage(d.getImage(),d.getX(),d.getY(),this);
         }
-        
+        g.drawImage(bm.getImage(),bm.getX(),bm.getY(),this);
+        g.drawImage(pl.getImage(),pl.getX(),pl.getY(),this);
     }
     
     private void initPosition(){
@@ -158,4 +165,7 @@ public class mainPanel extends javax.swing.JPanel {
 
     // Variables declaration - do not modify                     
     // End of variables declaration                   
+
+   
+
 }
