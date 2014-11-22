@@ -26,6 +26,7 @@ public class Bomb implements BombInterface,Runnable{
     private final int sleeper=time/60;
     private int no;
     private ImageIcon anim;
+    private DWall wall;
     
     public Bomb(){
     
@@ -92,6 +93,12 @@ public class Bomb implements BombInterface,Runnable{
                 if(no==180){
                 
                     pic=anim;
+                    if(wall!=null){
+                    
+                        wall.die();
+                        wall.setX(0);
+                        wall.setY(-61);
+                    }
                 }
                 if(no==240){
                 
@@ -107,7 +114,17 @@ public class Bomb implements BombInterface,Runnable{
     @Override
     public void setImage(ImageIcon a) {
         
-        anim=a;
+        pic=a;
+    }
+    
+    public void setWall(DWall e){
+    
+        wall=e;
+    }
+    
+    public DWall getWall(){
+    
+        return wall;
     }
     
 }
