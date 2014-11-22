@@ -173,6 +173,14 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
             } catch (InterruptedException ex) {
                 Logger.getLogger(mainPanel.class.getName()).log(Level.SEVERE, null, ex);
             }
+            for(int i=0;i<bombs.size();i++){
+            
+                Bomb b=(Bomb)bombs.get(i);
+                if(!b.isAlive()){
+                
+                    bombs.remove(i);
+                }
+            }
             repaint();
         }
     }
@@ -347,8 +355,23 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
             if(bombs.isEmpty()){
             
                 Bomb b=new Bomb();
-                b.setX(bm.getX());
-                b.setY(bm.getY());
+                int cc=bm.getX()%60;
+                int dd=bm.getY()%60;
+                int ee=bm.getX()/60;
+                int ff=bm.getY()/60;
+                if(cc<30){
+                
+                    b.setX(ee*60);
+                }
+                else 
+                    b.setX((ee+1)*60);
+                if(dd<30){
+                
+                    b.setY(ff*60);
+                }
+                else 
+                    b.setY((ff+1)*60);
+               
                 bombs.add(b);
             }
         }
