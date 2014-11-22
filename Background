@@ -1,0 +1,41 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package bombermann;
+
+import java.awt.Image;
+import javax.swing.ImageIcon;
+
+/**
+ *
+ * @author Myrro
+ */
+public class Background {
+    
+    private final int x=0;
+    private final int y=0;
+    private ImageIcon pic;
+    private final String filename="grx.png";
+    
+    public Background(){
+    
+        pic=new ImageIcon(filename);
+    }
+    
+    public Image getImage(){
+    
+        return pic.getImage();
+    }
+    
+    public int getX(){
+    
+        return x;
+    }
+    
+    public int getY(){
+    
+        return y;
+    }
+}
