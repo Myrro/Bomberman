@@ -12,7 +12,7 @@ import javax.swing.ImageIcon;
  *
  * @author Myrro
  */
-public class Bomber implements WallInterface{
+public class Bomber implements WallInterface,BomberInterface{
     
     private int x;
     private int y;
@@ -20,6 +20,11 @@ public class Bomber implements WallInterface{
     private ImageIcon pic;
     private boolean destructible;
     private boolean alive;
+    private int direction;
+    public static final int UP=0;
+    public static final int DOWN=1;
+    public static final int LEFT=2;
+    public static final int RIGHT=3;
     
     public Bomber(){
     
@@ -29,6 +34,7 @@ public class Bomber implements WallInterface{
         pic=new ImageIcon(filename);
         destructible=true;
         alive=true;
+        direction=0;
     }
 
     @Override
@@ -77,5 +83,38 @@ public class Bomber implements WallInterface{
     public boolean isAlive() {
         
         return alive;
+    }
+
+    @Override
+    public void move() {
+        
+        if(direction==UP){
+        
+            y=y-10;
+        }
+        else if(direction==DOWN){
+        
+            y=y+10;
+        }
+        else if(direction==LEFT){
+        
+            x=x-10;
+        }
+        else if(direction==RIGHT){
+        
+            x=x+10;
+        }
+    }
+
+    @Override
+    public void setDirection(int d) {
+        
+        direction=d;
+    }
+
+    @Override
+    public int getDirection() {
+        
+        return direction;
     }
 }
