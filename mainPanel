@@ -11,6 +11,8 @@ import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 /**
  *
@@ -25,6 +27,9 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     //private ArrayList grass;
     private ArrayList uwalls;
     private ArrayList dwalls;
+    private ArrayList bombs;
+    private final int time=1000;
+    private final int fps=time/60;
     private Bomber bm;
     private Player pl;
     private Thread t=new Thread(this);
@@ -42,6 +47,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         //grass=new ArrayList();
         uwalls=new ArrayList();
         dwalls=new ArrayList();
+        bombs=new ArrayList();
         bm=new Bomber();
         pl=new Player();
         bck=new Background();
@@ -70,6 +76,11 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         
             DWall d=(DWall)dwalls.get(i);
             g.drawImage(d.getImage(),d.getX(),d.getY(),this);
+        }
+        for(int i=0;i<bombs.size();i++){
+        
+            Bomb b=(Bomb)bombs.get(i);
+            g.drawImage(b.getImage(), b.getX(), b.getY(), this);
         }
         g.drawImage(bm.getImage(),bm.getX(),bm.getY(),this);
         g.drawImage(pl.getImage(),pl.getX(),pl.getY(),this);
@@ -156,7 +167,12 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         
         while(true){
         
-            //System.out.println(a);
+            try {
+                //System.out.println(a);
+                t.sleep(fps);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(mainPanel.class.getName()).log(Level.SEVERE, null, ex);
+            }
             repaint();
         }
     }
@@ -324,6 +340,16 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                         }
                     }
                 }
+            }
+        }
+        else if(ke.getKeyCode()==32){
+        
+            if(bombs.isEmpty()){
+            
+                Bomb b=new Bomb();
+                b.setX(bm.getX());
+                b.setY(bm.getY());
+                bombs.add(b);
             }
         }
     }
