@@ -6,25 +6,36 @@
 package bombermann;
 
 import java.awt.Image;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author Myrro
  */
-public class Bomb implements BombInterface{
+public class Bomb implements BombInterface,Runnable{
 
     private int x;
     private int y;
     private ImageIcon pic;
     private final String filename;
     private boolean alive;
+    private Thread t;
+    private final int time=1000;
+    private final int sleeper=time/60;
+    private int no;
+    private ImageIcon anim;
     
     public Bomb(){
     
         filename="bomb.png";
         pic=new ImageIcon(filename);
+        anim=new ImageIcon("anim.gif");
         alive=true;
+        no=0;
+        t=new Thread(this);
+        t.start();
     }
     
     @Override
@@ -67,6 +78,36 @@ public class Bomb implements BombInterface{
     public void setY(int y) {
         
         this.y=y;
+    }
+
+    @Override
+    public void run() {
+        
+        while(true){
+        
+            try {
+                
+                t.sleep(sleeper);
+                no++;
+                if(no==180){
+                
+                    pic=anim;
+                }
+                if(no==240){
+                
+                    die();
+                    break;
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Bomb.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public void setImage(ImageIcon a) {
+        
+        anim=a;
     }
     
 }
