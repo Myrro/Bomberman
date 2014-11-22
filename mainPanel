@@ -169,6 +169,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     @Override
     public void keyPressed(KeyEvent ke) {
          
+        boolean collided=false;
         if(ke.getKeyCode()==39){
         
             //right
@@ -182,11 +183,28 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     Rectangle r2=new Rectangle(u.getX(),u.getY(),60,60);
                     if(r1.intersects(r2)){
                     
+                        collided=true;
                         break;
                     }
                     if(i==uwalls.size() -1){
                     
-                        bm.move();
+                        collided=false;
+                    }
+                }
+                if(collided==false){
+                
+                    for(int i=0;i<dwalls.size();i++){
+                    
+                        DWall d=(DWall)dwalls.get(i);
+                        Rectangle r2=new Rectangle(d.getX(),d.getY(),60,60);
+                        if(r1.intersects(r2)){
+                        
+                            break;
+                        }
+                        if(i==dwalls.size()-1){
+                        
+                            bm.move();
+                        }
                     }
                 }
             }
@@ -204,11 +222,28 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     Rectangle r2=new Rectangle(u.getX(),u.getY(),60,60);
                     if(r1.intersects(r2)){
                     
+                        collided=true;
                         break;
                     }
                     if(i==uwalls.size() -1){
                     
-                        bm.move();
+                        collided=false;
+                    }
+                }
+                 if(collided==false){
+                
+                    for(int i=0;i<dwalls.size();i++){
+                    
+                        DWall d=(DWall)dwalls.get(i);
+                        Rectangle r2=new Rectangle(d.getX(),d.getY(),60,60);
+                        if(r1.intersects(r2)){
+                        
+                            break;
+                        }
+                        if(i==dwalls.size()-1){
+                        
+                            bm.move();
+                        }
                     }
                 }
             }
@@ -226,11 +261,28 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     Rectangle r2=new Rectangle(u.getX(),u.getY(),60,60);
                     if(r1.intersects(r2)){
                     
+                        collided=true;
                         break;
                     }
                     if(i==uwalls.size() -1){
+                  
+                        collided=false;
+                    }
+                }
+                 if(collided==false){
+                
+                    for(int i=0;i<dwalls.size();i++){
                     
-                        bm.move();
+                        DWall d=(DWall)dwalls.get(i);
+                        Rectangle r2=new Rectangle(d.getX(),d.getY(),60,60);
+                        if(r1.intersects(r2)){
+                        
+                            break;
+                        }
+                        if(i==dwalls.size()-1){
+                        
+                            bm.move();
+                        }
                     }
                 }
             }
@@ -248,11 +300,28 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     Rectangle r2=new Rectangle(u.getX(),u.getY(),60,60);
                     if(r1.intersects(r2)){
                     
+                        collided=true;
                         break;
                     }
                     if(i==uwalls.size() -1){
                     
-                        bm.move();
+                        collided=false;
+                    }
+                }
+                 if(collided==false){
+                
+                    for(int i=0;i<dwalls.size();i++){
+                    
+                        DWall d=(DWall)dwalls.get(i);
+                        Rectangle r2=new Rectangle(d.getX(),d.getY(),60,60);
+                        if(r1.intersects(r2)){
+                        
+                            break;
+                        }
+                        if(i==dwalls.size()-1){
+                        
+                            bm.move();
+                        }
                     }
                 }
             }
