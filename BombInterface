@@ -7,21 +7,131 @@ package bombermann;
 
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
 
 /**
  *
  * @author Myrro
  */
-public interface BombInterface {
+public class Bomb implements BombInterface,Runnable{
+
+    private int x;
+    private int y;
+    private ImageIcon pic;
+    private final String filename;
+    private boolean alive;
+    private Thread t;
+    private final int time=1000;
+    private final int sleeper=time/60;
+    private int no;
+    private ImageIcon anim;
+    private DWall wall;
     
-    public void setX(int x);
-    public void setY(int y);
-    public int getX();
-    public int getY();
-    public boolean isAlive();
-    public void die();
-    public Image getImage();
-    public void setImage(ImageIcon a);
-    public Rectangle getRectangled();
+    public Bomb(){
+    
+        filename="bomb.png";
+        pic=new ImageIcon(filename);
+        anim=new ImageIcon("anim.gif");
+        alive=true;
+        no=0;
+        t=new Thread(this);
+        t.start();
+    }
+    
+    @Override
+    public int getX() {
+        
+        return x;
+    }
+
+    @Override
+    public int getY() {
+        
+        return y;
+    }
+
+    @Override
+    public boolean isAlive() {
+        
+        return alive;
+    }
+
+    @Override
+    public void die() {
+        
+        alive=false;
+    }
+
+    @Override
+    public Image getImage() {
+        
+        return pic.getImage();
+    }
+
+    @Override
+    public void setX(int x) {
+        
+        this.x=x;
+    }
+
+    @Override
+    public void setY(int y) {
+        
+        this.y=y;
+    }
+
+    @Override
+    public void run() {
+        
+        while(true){
+        
+            try {
+                
+                t.sleep(sleeper);
+                no++;
+                if(no==180){
+                
+                    pic=anim;
+                    if(wall!=null){
+                    
+                        wall.die();
+                        wall.setX(0);
+                        wall.setY(-61);
+                    }
+                }
+                if(no==240){
+                
+                    die();
+                    break;
+                }
+            } catch (InterruptedException ex) {
+                Logger.getLogger(Bomb.class.getName()).log(Level.SEVERE, null, ex);
+            }
+        }
+    }
+
+    @Override
+    public void setImage(ImageIcon a) {
+        
+        pic=a;
+    }
+    
+    public void setWall(DWall e){
+    
+        wall=e;
+    }
+    
+    public DWall getWall(){
+    
+        return wall;
+    }
+
+    @Override
+    public Rectangle getRectangled() {
+        
+        return (new Rectangle(getX(),getY(),60,60));
+    }
+    
 }
