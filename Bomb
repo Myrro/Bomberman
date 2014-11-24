@@ -6,6 +6,7 @@
 package bombermann;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -125,6 +126,12 @@ public class Bomb implements BombInterface,Runnable{
     public DWall getWall(){
     
         return wall;
+    }
+
+    @Override
+    public Rectangle getRectangled() {
+        
+        return (new Rectangle(getX(),getY(),60,60));
     }
     
 }
