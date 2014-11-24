@@ -396,6 +396,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     
     public void lookDown(Bomb b){
     
+        boolean conti=false;
         int promX=b.getX();
         int promY=b.getY();
         if(promY!=HEIGHT-60){
@@ -412,7 +413,10 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                    
+                        bbs.add(e);
+                    }
                     break;
                 }
                 else{
@@ -424,8 +428,48 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                    
+                        bbs.add(e);
+                        conti=true;
                     }
+                    }
+                }
+            }
+            if(promY!=HEIGHT-60){
+            
+                if(conti==true){
+                
+                    promY=promY+60;
+                    for(int i=0;i<dwalls.size();i++){
+            
+                    DWall d=(DWall)dwalls.get(i);
+                    if(promX==d.getX()&&promY==d.getY()){
+                
+                    System.out.println("ZNIC TU KRYCHLI");
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                    break;
+                }
+                    else{
+                
+                    if(i==dwalls.size()-1){
+                    System.out.println("OHNIK "+promX);
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                   
+                    }
+                }
+                    }
+                    
                 }
             }
         }
@@ -433,6 +477,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     
     public void lookUp(Bomb b){
     
+        boolean conti=false;
         int promX=b.getX();
         int promY=b.getY();
         if(promY!=0){
@@ -449,7 +494,10 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                    
+                        bbs.add(e);
+                    }
                     break;
                 }
                 else{
@@ -461,8 +509,48 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                    
+                        bbs.add(e);
+                        conti=true;
                     }
+                    }
+                }
+            }
+            if(promY!=0){
+            
+                if(conti==true){
+                
+                    promY=promY-60;
+                    for(int i=0;i<dwalls.size();i++){
+            
+                    DWall d=(DWall)dwalls.get(i);
+                    if(promX==d.getX()&&promY==d.getY()){
+                
+                    System.out.println("ZNIC TU KRYCHLI");
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                    break;
+                }
+                    else{
+                
+                    if(i==dwalls.size()-1){
+                    System.out.println("OHNIK "+promX);
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                   
+                    }
+                }
+                    }
+                    
                 }
             }
         }
@@ -470,6 +558,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     
     public void lookLeft(Bomb b){
     
+        boolean conti=false;        
         int promX=b.getX();
         int promY=b.getY();
         if(promX!=0){
@@ -486,7 +575,10 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                   
+                        bbs.add(e);
+                    }
                     break;
                 }
                 else{
@@ -498,15 +590,68 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                   
+                        bbs.add(e);
+                        conti=true;
                     }
+                    }
+                }
+            }
+            if(promX!=0){
+            
+                if(conti==true){
+                
+                    promX=promX-60;
+                    for(int i=0;i<dwalls.size();i++){
+            
+                    DWall d=(DWall)dwalls.get(i);
+                    if(promX==d.getX()&&promY==d.getY()){
+                
+                    System.out.println("ZNIC TU KRYCHLI");
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                    break;
+                }
+                    else{
+                
+                    if(i==dwalls.size()-1){
+                    System.out.println("OHNIK "+promX);
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                   
+                    }
+                }
+                    }
+                    
                 }
             }
         }
     }
+    public boolean uWallsCollisionCheck(Bomb b){
     
+        for(int i=0;i<uwalls.size();i++){
+        
+            UWall w=(UWall)uwalls.get(i);
+            if(w.getX()==b.getX()&&w.getY()==b.getY()){
+            
+                return true;
+            }
+        }
+        return false;
+        
+    }
     public void lookRight(Bomb b){
     
+        boolean conti=false;
          int promX=b.getX();
         int promY=b.getY();
         if(promX!=WIDTH-60){
@@ -524,7 +669,10 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
-                    bbs.add(e);
+                    if(!uWallsCollisionCheck(e)){
+                        
+                        bbs.add(e);
+                    }
                     break;
                 }
                 else{
@@ -535,8 +683,48 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     e.setX(promX);
                     e.setY(promY);
                     e.setImage(anim);
+                    if(!uWallsCollisionCheck(e)){
                     bbs.add(e);
+                    conti=true;
                     }
+                    
+                    }
+                }
+            }
+            if(promX!=WIDTH-60){
+            
+                if(conti==true){
+                
+                    promX=promX+60;
+                    for(int i=0;i<dwalls.size();i++){
+            
+                    DWall d=(DWall)dwalls.get(i);
+                    if(promX==d.getX()&&promY==d.getY()){
+                
+                    System.out.println("ZNIC TU KRYCHLI");
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                    break;
+                }
+                    else{
+                
+                    if(i==dwalls.size()-1){
+                    System.out.println("OHNIK "+promX);
+                    Bomb e=new Bomb();
+                    e.setWall(d);
+                    e.setX(promX);
+                    e.setY(promY);
+                    e.setImage(anim);
+                    bbs.add(e);
+                   
+                    }
+                }
+                    }
+                    
                 }
             }
         }
