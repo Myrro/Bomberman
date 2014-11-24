@@ -28,7 +28,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     private ArrayList uwalls;
     private ArrayList dwalls;
     private ArrayList bombs;
-    private ArrayList exp;
+    //private ArrayList exp;
     private ArrayList bbs;
     private final int time=1000;
     private final int fps=time/60;
@@ -51,7 +51,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         uwalls=new ArrayList();
         dwalls=new ArrayList();
         bombs=new ArrayList();
-        exp=new ArrayList();
+        //exp=new ArrayList();
         bbs=new ArrayList();
         bm=new Bomber();
         anim=new ImageIcon("anim");
@@ -649,6 +649,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         return false;
         
     }
+    
     public void lookRight(Bomb b){
     
         boolean conti=false;
