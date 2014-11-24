@@ -16,7 +16,6 @@ public class DWall extends Wall implements WallInterface{
     
         filename="destructible-wall.png";
         pic=new ImageIcon(filename);
-        destructible=true;
         alive=true;
     }
 }
