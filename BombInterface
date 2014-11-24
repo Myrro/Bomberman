@@ -24,4 +24,8 @@ public interface BombInterface {
     public Image getImage();
     public void setImage(ImageIcon a);
     public Rectangle getRectangled();
+    public void setBomber(Bomber b);
+    public void setPlayer(Player pl);
+    public boolean bomberCollisionCheck();
+    public boolean playerCollisionCheck();
 }
