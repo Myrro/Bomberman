@@ -28,6 +28,8 @@ public class Bomb implements BombInterface,Runnable{
     private int no;
     private ImageIcon anim;
     private DWall wall;
+    private Bomber bm;
+    private Player pl;
     
     public Bomb(){
     
@@ -94,6 +96,17 @@ public class Bomb implements BombInterface,Runnable{
                 if(no==180){
                 
                     pic=anim;
+                    if(bomberCollisionCheck()){
+                    
+                        //System.out.println("Player 1 died");
+                        bm.die();
+                    }
+                    
+                    if(playerCollisionCheck()){
+                    
+                        //System.out.println("Player 2 died");
+                        pl.die();
+                    }
                     if(wall!=null){
                     
                         wall.die();
@@ -133,5 +146,43 @@ public class Bomb implements BombInterface,Runnable{
         
         return (new Rectangle(getX(),getY(),60,60));
     }
+
+    @Override
+    public void setBomber(Bomber b) {
+        
+        bm=b;
+    }
+
+    @Override
+    public void setPlayer(Player pl) {
+        
+        this.pl=pl;
+    }
+
+    @Override
+    public boolean bomberCollisionCheck() {
+        
+        Rectangle r1=bm.getRectangled();
+        Rectangle r2=getRectangled();
+        if(r1.intersects(r2)){
+        
+            return true;
+        }
+        else return false;
+    }
+
+    @Override
+    public boolean playerCollisionCheck() {
+        
+        Rectangle r1=pl.getRectangled();
+        Rectangle r2=getRectangled();
+        if(r1.intersects(r2)){
+        
+            return true;
+        }
+        else return false;
+    }
+
+   
     
 }
