@@ -7,6 +7,7 @@ package bombermann;
 
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 
 /**
@@ -19,7 +20,6 @@ public class Bomber implements WallInterface,BomberInterface{
     private int y;
     private String filename;
     private ImageIcon pic;
-    private boolean destructible;
     private boolean alive;
     private int direction;
     public static final int UP=0;
@@ -33,7 +33,6 @@ public class Bomber implements WallInterface,BomberInterface{
         y=0;
         filename="bomber.png";
         pic=new ImageIcon(filename);
-        destructible=true;
         alive=true;
         direction=0;
     }
@@ -66,12 +65,6 @@ public class Bomber implements WallInterface,BomberInterface{
     public Image getImage() {
         
         return pic.getImage();
-    }
-
-    @Override
-    public boolean isDestructible() {
-        
-        return destructible;
     }
 
     @Override
@@ -124,4 +117,12 @@ public class Bomber implements WallInterface,BomberInterface{
         
         return (new Rectangle(getX(),getY(),60,60));
     }
+
+    @Override
+    public void beAlive() {
+        
+        alive=true;
+    }
+
+   
 }
