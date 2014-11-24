@@ -16,4 +16,5 @@ public interface BomberInterface {
     public void setDirection(int d);
     public int getDirection();
     public Rectangle getRectangled();
+    public void beAlive();
 }
