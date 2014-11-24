@@ -6,12 +6,13 @@
 package bombermann;
 
 import java.awt.Image;
+import java.awt.Rectangle;
 import javax.swing.ImageIcon;
 /**
  *
  * @author Myrro
  */
-public class Player implements WallInterface{
+public class Player implements WallInterface,BomberInterface{
 
     private int x;
     private int y;
@@ -76,6 +77,27 @@ public class Player implements WallInterface{
     public boolean isAlive() {
         
         return alive;
+    }
+
+    @Override
+    public void move() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public void setDirection(int d) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public int getDirection() {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+
+    @Override
+    public Rectangle getRectangled() {
+        
+        return (new Rectangle(getX(),getY(),60,60));
     }
     
     
