@@ -15,7 +15,6 @@ public class UWall extends Wall implements WallInterface{
     
         filename="undestructible-wall.png";
         pic=new ImageIcon(filename);
-        destructible=false;
         alive=true;
     }
 }
