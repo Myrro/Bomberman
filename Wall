@@ -17,14 +17,12 @@ public class Wall implements WallInterface{
     protected int y;
     protected ImageIcon pic;
     protected String filename;
-    protected boolean destructible;
     protected boolean alive;
     
     public Wall(){
     
         filename="grasss.png";
         pic=new ImageIcon(filename);
-        destructible=false;
         alive=true;
     }
     
@@ -56,12 +54,6 @@ public class Wall implements WallInterface{
     public Image getImage() {
         
         return pic.getImage();
-    }
-
-    @Override
-    public boolean isDestructible() {
-        
-        return destructible;
     }
 
     @Override
