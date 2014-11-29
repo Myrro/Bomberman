@@ -1,0 +1,83 @@
+/*
+ * To change this license header, choose License Headers in Project Properties.
+ * To change this template file, choose Tools | Templates
+ * and open the template in the editor.
+ */
+package bombermann;
+
+import java.io.IOException;
+import java.io.ObjectInputStream;
+import java.io.ObjectOutputStream;
+import java.net.Socket;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+
+/**
+ *
+ * @author Myrro
+ */
+public class Connection extends Thread{
+    
+    private Socket socket;
+    private Object init;
+    private Package pack;
+    private Package vysPack;
+    
+    public Connection() throws IOException{
+    
+        socket=new Socket("localhost",6789);
+        init=new Object();
+        pack=new Package();
+        //vysPack=new Package();
+        
+    }
+    
+    public Object getInit(){
+    
+        return init;
+    }
+
+    public void setPackage(Package pack){
+    
+        this.pack=pack;
+    }
+    
+    public Package getVysPack(){
+
+        return vysPack;
+    }
+    
+    @Override
+    public void run(){
+    
+        ObjectInputStream in;
+        try {
+            in = new ObjectInputStream(socket.getInputStream());
+            init=in.readObject();
+            System.out.println(init.toString());
+        } catch (IOException ex) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+        } catch (ClassNotFoundException ex) {
+            Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+        }
+        
+        while(true){
+            
+            try {
+                ObjectOutputStream out1=new ObjectOutputStream(socket.getOutputStream());
+                out1.writeObject(pack);
+            } catch (IOException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            try {
+                ObjectInputStream in1=new ObjectInputStream(socket.getInputStream());
+                vysPack=(Package)in1.readObject();
+            } catch (IOException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            } catch (ClassNotFoundException ex) {
+                Logger.getLogger(Connection.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            
+        }
+    }
+}
