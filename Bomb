@@ -7,6 +7,7 @@ package bombermann;
 
 import java.awt.Image;
 import java.awt.Rectangle;
+import java.io.Serializable;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 import javax.swing.ImageIcon;
@@ -15,7 +16,7 @@ import javax.swing.ImageIcon;
  *
  * @author Myrro
  */
-public class Bomb implements BombInterface,Runnable{
+public class Bomb implements BombInterface,Runnable,Serializable{
 
     private int x;
     private int y;
