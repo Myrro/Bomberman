@@ -124,12 +124,12 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         }
         if(!bm.isAlive()){
             
-                System.out.println("GAME OVER");
+                System.out.println("GAME OVER 1");
                 restart();
             }
         if(!pl.isAlive()){
 
-                System.out.println("GAME OVER");
+                System.out.println("GAME OVER 2");
                 restart();
             }
     }
@@ -272,7 +272,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     bm.setY(pl.getY());
                     pl.setX(b.getX());
                     pl.setY(b.getY());
-                   
+                    setStartInformations();
                     p++;
                 }
                 else if(con.getInit().toString().equals("0")){
@@ -306,6 +306,14 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     bp.setNo(b.getNo());
                     anim.add(bp);
                 }
+                ArrayList alive=new ArrayList();
+                for(int i=0;i<dwalls.size();i++){
+                
+                    DWall d=(DWall)dwalls.get(i);
+                    boolean ar=d.isAlive();
+                    alive.add(ar);
+                }
+                pack.setAlive(alive);
                 pack.setBombPackerOne(bb);
                 pack.setBombPackerTwo(anim);
                 //System.out.println(pack.getX1());
@@ -353,11 +361,25 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                     bb.setX(b.getX());
                     bb.setY(b.getY());
                     bb.setNo(b.getNo());
+                    bb.setImage(anim);
                     if(bb.getNo()>180){
                     
                         bb.setImage(animm);
                     }
                     enAnim.add(bb);
+                }
+                ArrayList temp3=pck.getAlive();
+                for(int i=0;i<temp3.size();i++){
+                
+                    DWall d=(DWall)dwalls.get(i);
+                    boolean bd=(boolean)temp3.get(i);
+                    if(d.isAlive()!=bd){
+                    
+                        d.die();
+                        d.setX(60);
+                        d.setY(60);
+                        dwalls.set(i, d);
+                    }
                 }
                 //System.out.println(enBombs.size());
                 }
