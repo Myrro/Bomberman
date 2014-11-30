@@ -38,7 +38,7 @@ public class Bomb implements BombInterface,Runnable,Serializable{
         pic=new ImageIcon(filename);
         anim=new ImageIcon("anim.gif");
         alive=true;
-        no=0;
+        //no=0;
         t=new Thread(this);
         t.start();
     }
@@ -88,13 +88,14 @@ public class Bomb implements BombInterface,Runnable,Serializable{
     @Override
     public void run() {
         
+        no=0;
         while(true){
         
             try {
                 
                 t.sleep(sleeper);
                 no++;
-                if(no==180){
+                if(no>180){
                 
                     pic=anim;
                     if(bomberCollisionCheck()){
@@ -163,6 +164,7 @@ public class Bomb implements BombInterface,Runnable,Serializable{
     @Override
     public boolean bomberCollisionCheck() {
         
+        try{
         Rectangle r1=bm.getRectangled();
         Rectangle r2=getRectangled();
         if(r1.intersects(r2)){
@@ -170,11 +172,17 @@ public class Bomb implements BombInterface,Runnable,Serializable{
             return true;
         }
         else return false;
+        }
+        catch(Exception e){
+        
+            return false;
+        }
     }
 
     @Override
     public boolean playerCollisionCheck() {
         
+        try{
         Rectangle r1=pl.getRectangled();
         Rectangle r2=getRectangled();
         if(r1.intersects(r2)){
@@ -182,6 +190,23 @@ public class Bomb implements BombInterface,Runnable,Serializable{
             return true;
         }
         else return false;
+        }
+        catch(Exception e){
+        
+            return false;
+        }
+    }
+
+    @Override
+    public void setNo(int n) {
+        
+        no=n;
+    }
+
+    @Override
+    public int getNo() {
+        
+        return no;
     }
 
    
