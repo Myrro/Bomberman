@@ -18,12 +18,14 @@ public class Package implements PackageInterface,Serializable{
     private int x2;
     private int y1;
     private int y2;
-    private ArrayList bmbs;
+    private ArrayList bombs;
     private ArrayList anim;
+    private ArrayList bombpackerone;
+    private ArrayList bombpackertwo;
 
     public Package(){
     
-        
+
     }
     
     @Override
@@ -75,26 +77,26 @@ public class Package implements PackageInterface,Serializable{
     }
 
     @Override
-    public void setBombs(ArrayList bombs) {
+    public void setBombPackerOne(ArrayList b) {
         
-        bmbs=bombs;
+        bombpackerone=b;
     }
 
     @Override
-    public ArrayList getBombs() {
+    public ArrayList getBombPackerOne() {
         
-        return bmbs;
+        return bombpackerone;
     }
 
     @Override
-    public void setAnim(ArrayList anim) {
+    public void setBombPackerTwo(ArrayList b) {
         
-        this.anim=anim;
+        bombpackertwo=b;
     }
 
     @Override
-    public ArrayList getAnim() {
+    public ArrayList getBombPackerTwo() {
         
-        return anim;
+        return bombpackertwo;
     }
 }
