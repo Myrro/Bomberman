@@ -28,4 +28,6 @@ public interface BombInterface {
     public void setPlayer(Player pl);
     public boolean bomberCollisionCheck();
     public boolean playerCollisionCheck();
+    public void setNo(int n);
+    public int getNo();
 }
