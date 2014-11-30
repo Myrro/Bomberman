@@ -24,4 +24,6 @@ public interface PackageInterface {
     public ArrayList getBombPackerOne();
     public void setBombPackerTwo(ArrayList b);
     public ArrayList getBombPackerTwo();
+    public void setAlive(ArrayList a);
+    public ArrayList getAlive();
 }
