@@ -60,9 +60,13 @@ public class Server {
             ArrayList ar2=pack2.getBombPackerOne();
             ArrayList an1=pack1.getBombPackerTwo();
             ArrayList an2=pack2.getBombPackerTwo();
+            ArrayList al1=pack1.getAlive();
+            ArrayList al2=pack2.getAlive();
+            vysPack2.setAlive(al2);
             vysPack2.setBombPackerOne(ar2);
             vysPack2.setBombPackerTwo(an2);
             vysPack1.setBombPackerTwo(an1);
+            vysPack1.setAlive(al1);
             vysPack1.setBombPackerOne(ar);
             }
             catch(Exception e){
