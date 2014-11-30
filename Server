@@ -55,8 +55,19 @@ public class Server {
             ObjectInputStream in2=new ObjectInputStream(soc2.getInputStream());
             pack1=(Package)in1.readObject();
             pack2=(Package)in2.readObject();
-            System.out.println(pack1.getX1());
+            try{
+            ArrayList ar=pack1.getBombPackerOne();
+            ArrayList ar2=pack2.getBombPackerOne();
+            ArrayList an1=pack1.getBombPackerTwo();
+            ArrayList an2=pack2.getBombPackerTwo();
+            vysPack2.setBombPackerOne(ar2);
+            vysPack2.setBombPackerTwo(an2);
+            vysPack1.setBombPackerTwo(an1);
+            vysPack1.setBombPackerOne(ar);
+            }
+            catch(Exception e){
             
+            }
             vysPack1.setX2(pack1.getX1());
             vysPack1.setY2(pack1.getY1());
             vysPack2.setX2(pack2.getX1());
