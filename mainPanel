@@ -30,6 +30,8 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     private ArrayList dwalls;
     private ArrayList dwallsCpy;
     private ArrayList bombs;
+    private ArrayList enBombs;
+    private ArrayList enAnim;
     //private ArrayList exp;
     private ArrayList bbs;
     private final int time=1000;
@@ -42,6 +44,7 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
     private ImageIcon pic;
     private Background bck;
     private ImageIcon anim;
+    private ImageIcon animm;
     private Connection con;
     private Package pack;
     /**
@@ -58,10 +61,13 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         dwalls=new ArrayList();
         pack=new Package();
         bombs=new ArrayList();
+        enBombs=new ArrayList();
+        enAnim=new ArrayList();
         //exp=new ArrayList();
         bbs=new ArrayList();
         bm=new Bomber();
         anim=new ImageIcon("anim");
+        animm=new ImageIcon("anim.gif");
         pl=new Player();
         bck=new Background();
         pic=new ImageIcon("grx.png");
@@ -106,7 +112,16 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
         }
         g.drawImage(bm.getImage(),bm.getX(),bm.getY(),this);
         g.drawImage(pl.getImage(),pl.getX(),pl.getY(),this);
+        for(int i=0;i<enBombs.size();i++){
         
+            Bomb b=(Bomb)enBombs.get(i);
+            g.drawImage(b.getImage(),b.getX(),b.getY(),this);
+        }
+        for(int i=0;i<enAnim.size();i++){
+        
+            Bomb b=(Bomb)enAnim.get(i);
+            g.drawImage(b.getImage(),b.getX(), b.getY(), this);
+        }
         if(!bm.isAlive()){
             
                 System.out.println("GAME OVER");
@@ -263,14 +278,37 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
                 else if(con.getInit().toString().equals("0")){
                 
                     p++;
-                    System.out.println("0");
+                    //System.out.println("0");
                 }
                 
             }
             if(p==1){
                 pack.setX1(bm.getX());
                 pack.setY1(bm.getY());
-                System.out.println(pack.getX1());
+                ArrayList bb=new ArrayList();
+                for(int i=0;i<bombs.size();i++){
+                
+                    Bomb b=(Bomb)bombs.get(i);
+                    System.out.println(b.getNo());
+                    BombPacker bp=new BombPacker();
+                    bp.setX(b.getX());
+                    bp.setY(b.getY());
+                    bp.setNo(b.getNo());
+                    bb.add(bp);
+                }
+                ArrayList anim=new ArrayList();
+                for(int i=0;i<bbs.size();i++){
+                
+                    Bomb b=(Bomb)bbs.get(i);
+                    BombPacker bp=new BombPacker();
+                    bp.setX(b.getX());
+                    bp.setY(b.getY());
+                    bp.setNo(b.getNo());
+                    anim.add(bp);
+                }
+                pack.setBombPackerOne(bb);
+                pack.setBombPackerTwo(anim);
+                //System.out.println(pack.getX1());
                 con.setPackage(pack);
                 
                     
@@ -283,9 +321,49 @@ public class mainPanel extends javax.swing.JPanel implements Runnable,KeyListene
             }
             Package pck=con.getVysPack();
             if(pck!=null){
-                
+                try{
+                enBombs.clear();
+                enAnim.clear();
                pl.setX(pck.getX2());
                 pl.setY(pck.getY2());
+                ArrayList temp=new ArrayList();
+                temp=pck.getBombPackerOne();
+                for(int i=0;i<temp.size();i++){
+                
+                    BombPacker b=(BombPacker)temp.get(i);
+                    Bomb bb=new Bomb();
+                    bb.setX(b.getX());
+                    bb.setY(b.getY());
+                    bb.setNo(b.getNo());
+                    bb.setBomber(bm);
+                    bb.setPlayer(pl);
+                    System.out.println(bb.getNo());
+                    if(bb.getNo()>180){
+                    
+                        bb.setImage(animm);
+                    }
+                    enBombs.add(bb);
+                }
+                ArrayList temp2=new ArrayList();
+                temp2=pck.getBombPackerTwo();
+                for(int i=0;i<temp2.size();i++){
+                
+                    BombPacker b=(BombPacker)temp2.get(i);
+                    Bomb bb=new Bomb();
+                    bb.setX(b.getX());
+                    bb.setY(b.getY());
+                    bb.setNo(b.getNo());
+                    if(bb.getNo()>180){
+                    
+                        bb.setImage(animm);
+                    }
+                    enAnim.add(bb);
+                }
+                //System.out.println(enBombs.size());
+                }
+                catch(Exception e){
+                
+                }
             }
             for(int i=0;i<bombs.size();i++){
             
