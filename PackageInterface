@@ -20,8 +20,8 @@ public interface PackageInterface {
     public void setY2(int y);
     public int getY1();
     public int getY2();
-    public void setBombs(ArrayList bombs);
-    public ArrayList getBombs();
-    public void setAnim(ArrayList anim);
-    public ArrayList getAnim();
+    public void setBombPackerOne(ArrayList b);
+    public ArrayList getBombPackerOne();
+    public void setBombPackerTwo(ArrayList b);
+    public ArrayList getBombPackerTwo();
 }
