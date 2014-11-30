@@ -22,6 +22,7 @@ public class Package implements PackageInterface,Serializable{
     private ArrayList anim;
     private ArrayList bombpackerone;
     private ArrayList bombpackertwo;
+    private ArrayList alive;
 
     public Package(){
     
@@ -98,5 +99,17 @@ public class Package implements PackageInterface,Serializable{
     public ArrayList getBombPackerTwo() {
         
         return bombpackertwo;
+    }
+
+    @Override
+    public void setAlive(ArrayList a) {
+        
+        alive=a;
+    }
+
+    @Override
+    public ArrayList getAlive() {
+        
+        return alive;
     }
 }
